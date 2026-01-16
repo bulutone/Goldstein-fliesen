@@ -820,6 +820,10 @@ button {
   .btn-outline {
     width: 100%;
     text-align: center;
+    border-color: var(--accent);
+    color: var(--accent);
+    background-color: rgba(212, 175, 55, 0.05);
+    /* Very subtle gold tint */
   }
 
   .cta-buttons {
