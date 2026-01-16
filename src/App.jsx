@@ -614,11 +614,12 @@ const CookieBanner = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="cookie-banner">
-      <div className="container cookie-content">
+    <div className="cookie-overlay">
+      <div className="cookie-popup">
         <div className="cookie-text">
           <ShieldCheck className="text-accent" size={24} />
-          <p>Wir nutzen Cookies, um Ihr Erlebnis zu verbessern. <Link to="/datenschutz">Mehr erfahren</Link></p>
+          <h3>Privatsphäre-Einstellungen</h3>
+          <p>Wir nutzen Cookies, um Ihr Erlebnis zu verbessern und Statistiken zu erfassen. <Link to="/datenschutz">Mehr erfahren</Link></p>
         </div>
         <div className="cookie-btns">
           <button onClick={() => handleConsent('rejected')} className="btn-cookie-reject">Ablehnen</button>
