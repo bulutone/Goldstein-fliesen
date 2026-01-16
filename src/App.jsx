@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Outlet, useLocation } from 'react-router-dom';
 import Impressum from './Impressum';
-import { Phone, MessageCircle, ChevronRight, Calendar, User } from 'lucide-react';
+import Datenschutz from './Datenschutz';
+import AGB from './AGB';
+import { Phone, MessageCircle, ChevronRight, Calendar, User, ShieldCheck } from 'lucide-react';
 
 const GALLERY_GROUPS = {
   after: [
@@ -137,6 +139,8 @@ const Layout = () => {
             <h4>Quick Links</h4>
             <Link to="/">Home</Link>
             <Link to="/impressum">Impressum</Link>
+            <Link to="/datenschutz">Datenschutz</Link>
+            <Link to="/agb">AGB</Link>
           </div>
           <div className="footer-contact">
             <h4>Kontakt</h4>
@@ -592,13 +596,49 @@ const BlogPost = () => (
   </div>
 );
 
+const CookieBanner = () => {
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const consent = localStorage.getItem('cookie-consent');
+    if (!consent) {
+      setShowBanner(true);
+    }
+  }, []);
+
+  const handleConsent = (type) => {
+    localStorage.setItem('cookie-consent', type);
+    setShowBanner(false);
+  };
+
+  if (!showBanner) return null;
+
+  return (
+    <div className="cookie-banner">
+      <div className="container cookie-content">
+        <div className="cookie-text">
+          <ShieldCheck className="text-accent" size={24} />
+          <p>Wir nutzen Cookies, um Ihr Erlebnis zu verbessern. <Link to="/datenschutz">Mehr erfahren</Link></p>
+        </div>
+        <div className="cookie-btns">
+          <button onClick={() => handleConsent('rejected')} className="btn-cookie-reject">Ablehnen</button>
+          <button onClick={() => handleConsent('accepted')} className="btn-cookie-accept">Akzeptieren</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
+      <CookieBanner />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<LandingPage />} />
           <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/agb" element={<AGB />} />
           <Route path="/blog/trends-2026" element={<BlogPost />} />
         </Route>
       </Routes>
