@@ -608,6 +608,14 @@ const CookieBanner = () => {
 
   const handleConsent = (type) => {
     localStorage.setItem('cookie-consent', type);
+
+    // Push consent to GTM
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cookie_consent_update',
+      consent_level: type
+    });
+
     setShowBanner(false);
   };
 
