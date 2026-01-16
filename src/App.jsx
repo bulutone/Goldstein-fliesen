@@ -263,7 +263,6 @@ function LandingPage() {
       <section id="home" className="hero">
         <div className="hero-overlay"></div>
         <div className="container hero-content">
-          <div className="hero-badge">Ihr Fliesenleger für das Rhein-Main-Gebiet</div>
           <h1>Exklusive Fliesenkonzepte <br /><span className="text-accent">in Rhein-Main</span></h1>
           <p>Verwandel dein Zuhause in ein Kunstwerk. Wir sind Ihr Partner für hochwertige Badsanierung und XXL-Fliesen in Frankfurt, Wiesbaden, Mainz, Mannheim und Umgebung.</p>
           <div className="hero-financing-banner">
